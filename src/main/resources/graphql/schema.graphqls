@@ -1,0 +1,48 @@
+schema {
+ query: Query
+ mutation: Mutation
+}
+
+type Query {
+ allBooks: [Book]
+ allAuthors: [Author]
+ getBook(id: ID): Book
+ getAuthor(id: ID): Author
+}
+
+type Mutation {
+    addBook(bookInput : BookInput) : Book
+    deleteBook(id :Int) :Int
+    updateBook(id:Int, bookInput:BookInput ) : Book
+    addAuthor(authorInput : AuthorInput) : Author
+}
+
+type Author {
+    id: ID!,
+    lastname : String!,
+    firstname : String,
+    books : [Book]
+}
+type Book {
+    id: ID!,
+    title : String!,
+    page : Int,
+    isbn : String,
+    description : String,
+    price : Float,
+    author : Author!
+}
+
+input AuthorInput {
+    lastname : String,
+    firstname : String
+}
+
+input BookInput {
+    title : String,
+    description : String,
+    isbn : String,
+    price : Float,
+    page : Int,
+    authorId : Int
+}

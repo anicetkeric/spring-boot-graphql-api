@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: graphql-api
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false    
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy  
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: dev
+    password: qwerty
+    url: jdbc:postgresql://localhost:5432/book-mybatis 
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+
+  graphql:
+    graphiql:
+      enabled: true
+      #path: /graphiql
+
+
+

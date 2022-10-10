@@ -4,8 +4,8 @@ schema {
 }
 
 type Query {
- allBooks: [Book]
- allAuthors: [Author]
+ getBooks: [Book]
+ getAuthors: [Author]
  getBook(id: ID): Book
  getAuthor(id: ID): Author
 }

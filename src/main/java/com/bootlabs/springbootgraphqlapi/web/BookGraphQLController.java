@@ -11,6 +11,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -27,11 +28,11 @@ public class BookGraphQLController {
     }
 
     @QueryMapping
-    public List<Book> allBooks(){
+    public List<Book> getBooks(){
         return bookService.getAll();
     }
     @QueryMapping
-    public List<Author> allAuthors(){
+    public List<Author> getAuthors(){
         return authorService.getAll();
     }
     @QueryMapping
@@ -45,7 +46,7 @@ public class BookGraphQLController {
 
 
    @MutationMapping
-    public Book addBook(@Argument BookInput bookInput){
+    public Book addBook(@Argument @Valid BookInput bookInput){
         Author author = authorService.getOne((long)bookInput.authorId());
         if (ObjectUtils.isEmpty(author)){
             throw new RuntimeException();
@@ -56,7 +57,7 @@ public class BookGraphQLController {
         return bookService.create(book);
     }
     @MutationMapping
-    public Book updateBook(@Argument int id , @Argument BookInput bookInput){
+    public Book updateBook(@Argument int id , @Argument @Valid BookInput bookInput){
         Book book = bookService.getOne((long)id);
         if (ObjectUtils.isEmpty(book)){
             throw new RuntimeException("book not found!");
@@ -72,7 +73,7 @@ public class BookGraphQLController {
     }
 
    @MutationMapping
-    public Author addAuthor(@Argument AuthorInput authorInput){
+    public Author addAuthor(@Argument @Valid AuthorInput authorInput){
         Author author = EntityMapper.toAuthorEntity(authorInput);
         return authorService.create(author);
     }

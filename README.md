@@ -1,1 +1,1 @@
-# spring-boot-graphql-api
+# Spring Boot GraphQL API

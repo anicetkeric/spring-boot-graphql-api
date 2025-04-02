@@ -1,9 +1,11 @@
-package com.bootlabs.springbootgraphqlapi.web;
+package com.bootlabs.springbootgraphqlapi.web.request;
 
 import com.bootlabs.springbootgraphqlapi.entities.Author;
 import com.bootlabs.springbootgraphqlapi.entities.Book;
 
 public class EntityMapper {
+
+    private EntityMapper(){}
 
     public static Book toBookEntity(BookInput bookInput){
         Book book = new Book();
@@ -25,5 +27,5 @@ public class EntityMapper {
 
 }
 
-record AuthorInput(String lastname,String firstname){}
-record BookInput(String title,String description,String isbn, Double price, Integer page, Long authorId){}
+
+

@@ -4,14 +4,16 @@ import com.bootlabs.springbootgraphqlapi.entities.Author;
 import com.bootlabs.springbootgraphqlapi.entities.Book;
 import com.bootlabs.springbootgraphqlapi.service.AuthorService;
 import com.bootlabs.springbootgraphqlapi.service.BookService;
+import com.bootlabs.springbootgraphqlapi.web.request.AuthorInput;
+import com.bootlabs.springbootgraphqlapi.web.request.BookInput;
+import com.bootlabs.springbootgraphqlapi.web.request.EntityMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ObjectUtils;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -47,10 +49,7 @@ public class BookGraphQLController {
 
    @MutationMapping
     public Book addBook(@Argument @Valid BookInput bookInput){
-        Author author = authorService.getOne((long)bookInput.authorId());
-        if (ObjectUtils.isEmpty(author)){
-            throw new RuntimeException();
-        }
+        Author author = authorService.getOne(bookInput.authorId());
 
         Book book = EntityMapper.toBookEntity(bookInput);
         book.setAuthor(author);
@@ -59,9 +58,6 @@ public class BookGraphQLController {
     @MutationMapping
     public Book updateBook(@Argument int id , @Argument @Valid BookInput bookInput){
         Book book = bookService.getOne((long)id);
-        if (ObjectUtils.isEmpty(book)){
-            throw new RuntimeException("book not found!");
-        }
 
         book.setPage(bookInput.page());
         book.setPrice(bookInput.price());

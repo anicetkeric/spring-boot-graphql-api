@@ -4,7 +4,7 @@ Spring Boot GraphQL API
 
 ## Tech Stack
 
-**Spring-boot**, **maven**, **java17**, **GraphQL**, **PostegreSQL**, **Spring Data JPA**
+**Spring-boot**, **maven**, **java21**, **GraphQL**, **PostegreSQL**, **Spring Data JPA**
 
 
 ## Run Locally

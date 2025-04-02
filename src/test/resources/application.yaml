@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: graphql-api
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:file:./target/h2db/testdb/bookdb;DB_CLOSE_DELAY=-1
+    username: dev
+    password:
+    hikari:
+      auto-commit: false
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+      database-platform: org.hibernate.dialect.H2Dialect
+      show-sql: false
+
+  graphql:
+    graphiql:
+      enabled: true
+    cors:
+      allowed-origins: "*"
+
+
+
+
+
